@@ -1,0 +1,18 @@
+[
+  {
+    "model": "Plataforma_de_musica.genero",
+    "pk": 1,
+    "fields": {
+      "nombre": "Rock",
+      "descripcion": "Género musical caracterizado por un fuerte beat y guitarras eléctricas."
+    }
+  },
+  {
+    "model": "Plataforma_de_musica.genero",
+    "pk": 2,
+    "fields": {
+      "nombre": "Pop",
+      "descripcion": "Música popular orientada a las listas de éxitos comerciales."
+    }
+  }
+]
