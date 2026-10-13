@@ -1,29 +1,64 @@
 
 {% extends "base.html" %}
 
-{% block titulo %}
-Registro de Usuario
-{% endblock %}
+{% block title %}Registrarse | MusicVibe{% endblock %}
 
-{% block titulo_encabezado %}
-Registro de Usuario
-{% endblock %}
+{% block content %}
 
-{% block contenido %}
+<div class="tarjeta">
 
-<h2>Crear una cuenta</h2>
+    <div class="icono">♫</div>
 
-<form method="post">
-    {% csrf_token %}
+    <h1>Crear una cuenta</h1>
 
-    {{ form.as_p }}
+    <p class="subtitulo">
+        Únete a MusicVibe y comienza a descubrir
+        tu mundo musical.
+    </p>
 
-    <button type="submit">Registrarse</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
 
-<p>
-    ¿Ya tienes una cuenta?
-    <a href="{% url 'login' %}">Iniciar sesión</a>
-</p>
+        {% if form.non_field_errors %}
+            <div class="errores">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% for campo in form %}
+
+            <label for="{{ campo.id_for_label }}">
+                {{ campo.label }}
+            </label>
+
+            {{ campo }}
+
+            {% if campo.errors %}
+                <div class="errores">
+                    {{ campo.errors }}
+                </div>
+            {% endif %}
+
+            {% if campo.help_text %}
+                <div class="ayuda">
+                    {{ campo.help_text|safe }}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+        <button type="submit" class="btn-principal">
+            Crear cuenta
+        </button>
+    </form>
+
+    <p class="texto-inferior">
+        ¿Ya tienes una cuenta?
+        <a href="{% url 'login' %}" class="enlace">
+            Iniciar sesión
+        </a>
+    </p>
+
+</div>
 
 {% endblock %}
