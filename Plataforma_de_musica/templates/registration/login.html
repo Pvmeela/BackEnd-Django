@@ -1,24 +1,38 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar sesión</title>
-</head>
-<body>
-    <h1>Plataforma de Música</h1>
-    <h2>Iniciar sesión</h2>
+{% extends "base.html" %}
+
+{% block titulo %}
+Iniciar Sesión
+{% endblock %}
+
+{% block titulo_encabezado %}
+Inicio de Sesión
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Ingresar a la Plataforma de Música</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username"
+               name="username" required>
+    </p>
+
+    <p>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password"
+               name="password" required>
+    </p>
 
     {% if form.errors %}
         <p>Usuario o contraseña incorrectos.</p>
     {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
+    <button type="submit">Iniciar sesión</button>
+</form>
 
-        {{ form.as_p }}
-
-        <button type="submit">Ingresar</button>
-    </form>
-</body>
-</html>
+{% endblock %}

@@ -132,3 +132,14 @@ MAILERS = {
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# Configuracion de sesiones
+
+# La sesion dura una hora
+SESSION_COOKIE_AGE = 3600
+
+# La sesion expira al cerrar el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Las sesiones se guardan en la base de datos
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'

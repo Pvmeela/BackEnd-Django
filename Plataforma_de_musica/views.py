@@ -4,6 +4,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.shortcuts import render
 
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import redirect
+
+
 from rest_framework import viewsets
 from rest_framework.permissions import (
     IsAuthenticated,
@@ -118,3 +124,19 @@ class HistorialViewSet(viewsets.ModelViewSet):
     serializer_class = HistorialSerializer
     permission_classes = [IsAuthenticated]
 
+
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registro exitoso. ¡Bienvenido!")
+            return redirect('bienvenida')
+        else:
+            messages.error(request, "Revisa los datos del formulario.")
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/registro.html', {'form': form})

@@ -13,20 +13,38 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+
 """
+
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views  # <--- Agrega esta línea arriba
+from django.contrib.auth import views as auth_views
 from Plataforma_de_musica import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # Rutas de Autenticación nativas de Django (NUEVO para Evaluación 3)
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
-    # Tus rutas actuales que ya funcionan perfecto
+
+    # Inicio y cierre de sesion
+    path(
+        'accounts/login/',
+        auth_views.LoginView.as_view(
+            template_name='registration/login.html'
+        ),
+        name='login'
+    ),
+
+    path(
+        'accounts/logout/',
+        auth_views.LogoutView.as_view(),
+        name='logout'
+    ),
+
+    # Pagina de bienvenida
     path('', views.bienvenida, name='bienvenida'),
+
+    # Registro de usuarios
+    path('registro/', views.registro, name='registro'),
+
+    # Rutas de la API
     path('api/', include('Plataforma_de_musica.urls')),
 ]

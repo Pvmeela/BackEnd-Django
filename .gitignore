@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Entorno virtual del proyecto
+clases/
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+clases/
