@@ -16,10 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views  # <--- Agrega esta línea arriba
 from Plataforma_de_musica import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # Rutas de Autenticación nativas de Django (NUEVO para Evaluación 3)
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    # Tus rutas actuales que ya funcionan perfecto
     path('', views.bienvenida, name='bienvenida'),
-    path('api/', include('Plataforma_de_musica.urls')), 
+    path('api/', include('Plataforma_de_musica.urls')),
 ]

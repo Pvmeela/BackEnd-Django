@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     UsuarioViewSet, ArtistaViewSet, GeneroViewSet, AlbumViewSet, CancionViewSet,
-    PlaylistViewSet, PlaylistCancionViewSet, FavoritoViewSet, ReproduccionViewSet, SeguidorViewSet, HistorialViewSet
+    PlaylistViewSet, PlaylistCancionViewSet, FavoritoViewSet, ReproduccionViewSet, SeguidorViewSet, HistorialViewSet,
+    vista_protegida_funcional, VistaProtegidaClase  # <--- Importa tus vistas protegidas aquí
 )
 
 router = DefaultRouter()
@@ -19,5 +20,10 @@ router.register(r'seguidores', SeguidorViewSet)
 router.register(r'historial', HistorialViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    # Rutas para las vistas protegidas exigidas en la Evaluación 3
+    path('protegida-funcion/', vista_protegida_funcional, name='protegida_funcion'),
+    path('protegida-clase/', VistaProtegidaClase.as_view(), name='protegida_clase'),
+    
+    # Tus rutas de la API REST que ya tenías
+    path("", include(router.urls)),
 ]

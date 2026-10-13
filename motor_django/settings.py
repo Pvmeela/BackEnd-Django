@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'motor_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),      # <-- Debe decir 'DB_NAME' entre comillas
-        'USER': config('DB_USER'),      # <-- 'DB_USER'
-        'PASSWORD': config('DB_PASSWORD'), # <-- 'DB_PASSWORD'
+        'NAME': config('DB_NAME'),      
+        'USER': config('DB_USER'),      
+        'PASSWORD': config('DB_PASSWORD'), 
         'HOST': config('DB_HOST', default='localhost'),
         'PORT': config('DB_PORT', default='3306'),
     }
@@ -129,3 +129,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Plataforma de Música</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        header {
+            background-color: #242424;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px;
+            background-color: #7046b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Música</h1>
+        <p>Panel de usuario</p>
+    </header>
+
+    <main>
+        <h2>Bienvenido, {{ request.user.username }}</h2>
+
+        <p>Has iniciado sesión correctamente.</p>
+        <p>Esta página está protegida mediante
+           la autenticación de Django.</p>
+
+        <h3>Opciones disponibles</h3>
+
+        <a href="/api/generos/">Géneros</a>
+        <a href="/api/artistas/">Artistas</a>
+        <a href="/api/canciones/">Canciones</a>
+
+        <h3>Cerrar sesión</h3>
+
+        <form action="/accounts/logout/" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </main>
+</body>
+</html>
