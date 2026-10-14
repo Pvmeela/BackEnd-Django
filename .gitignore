@@ -224,3 +224,10 @@ clases/
 .env.*
 !.env.example
 clases/
+
+# Entorno virtual
+clases/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
